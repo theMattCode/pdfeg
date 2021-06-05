@@ -1,0 +1,10 @@
+{
+  "name": "pdfeg",
+  "version": "0.0.1",
+  "description": "PDF library",
+  "repository": "https://github.com/theMattCode/pdfeg",
+  "author": "theMattCode",
+  "license": "No License",
+  "private": true,
+  "workspaces": ["./pkg"]
+}
