@@ -2,7 +2,7 @@ package objects
 
 import (
 	"github.com/stretchr/testify/assert"
-	"pdfeg-core/pkg/model"
+	model2 "pdfeg-core/model"
 	"testing"
 )
 
@@ -21,7 +21,7 @@ func Test_NewReference_validatesObjectNumber(t *testing.T) {
 	reference, err := NewReference(0, 0)
 	assert.Error(t, err)
 	assert.Equal(t, "object number", err.Context)
-	assert.Equal(t, model.PositiveIntegerMessage, err.Message)
+	assert.Equal(t, model2.PositiveIntegerMessage, err.Message)
 	assert.Equal(t, "0", err.Value)
 	assert.Nil(t, reference)
 }
@@ -30,7 +30,7 @@ func Test_NewReference_validatesGenerationNumber(t *testing.T) {
 	reference, err := NewReference(1, -1)
 	assert.Error(t, err)
 	assert.Equal(t, "generation number", err.Context)
-	assert.Equal(t, model.NonNegativeIntegerMessage, err.Message)
+	assert.Equal(t, model2.NonNegativeIntegerMessage, err.Message)
 	assert.Equal(t, "-1", err.Value)
 	assert.Nil(t, reference)
 }

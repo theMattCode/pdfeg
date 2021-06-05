@@ -2,7 +2,7 @@ package objects
 
 import (
 	"fmt"
-	"pdfeg-core/pkg/model"
+	model2 "pdfeg-core/model"
 )
 
 type Object interface {
@@ -16,11 +16,11 @@ type Reference struct {
 	generationNumber int
 }
 
-func NewReference(objectNumber int, generationNumber int) (*Reference, *model.ValidationError) {
-	if err := model.ValidatePositiveInteger("object number", objectNumber); err != nil {
+func NewReference(objectNumber int, generationNumber int) (*Reference, *model2.ValidationError) {
+	if err := model2.ValidatePositiveInteger("object number", objectNumber); err != nil {
 		return nil, err
 	}
-	if err := model.ValidateNonNegativeInteger("generation number", generationNumber); err != nil {
+	if err := model2.ValidateNonNegativeInteger("generation number", generationNumber); err != nil {
 		return nil, err
 	}
 	return &Reference{objectNumber, generationNumber}, nil
