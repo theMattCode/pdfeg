@@ -5,6 +5,7 @@ on:
     paths:
       - 'packages/core/**'
       - '.github/workflows/core.yml'
+      - 'Makefile'
 
 jobs:
   test:
@@ -21,8 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Test
-        run: go test -json ./...
-        working-directory: packages/core
+        run: make core-test
 
   build-wasm:
     runs-on: ubuntu-latest
@@ -34,5 +34,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build
-        run: GOOS=js GOARCH=wasm go build -o pdfeg.wasm
-        working-directory: packages/core
+        run: make core-build-wasm
