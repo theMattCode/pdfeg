@@ -10,7 +10,7 @@ type Object interface {
 }
 
 // Reference represents an address of an indirect object. Use NewReference instead of direct init.
-// See ISO 32000-1:2008, 7.3.10.
+// See ISO 32000-2:2017, 7.3.10.
 type Reference struct {
 	objectNumber     int
 	generationNumber int
@@ -30,6 +30,7 @@ func (r *Reference) asBytes() ([]byte, error) {
 	return []byte(fmt.Sprintf("%d %d R", r.objectNumber, r.generationNumber)), nil
 }
 
+// Null represents PDF's null object. See ISO 32000-2:2017, 7.3.9.
 type Null struct {
 	*Reference
 }

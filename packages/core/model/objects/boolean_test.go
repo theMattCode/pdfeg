@@ -11,11 +11,11 @@ var (
 )
 
 func TestBooleanTrue(t *testing.T) {
-	assertBoolean(t, &TRUE, true)
+	assertBoolean(t, &True, true)
 }
 
 func TestBooleanFalse(t *testing.T) {
-	assertBoolean(t, &FALSE, false)
+	assertBoolean(t, &False, false)
 }
 
 func Test_NewIndirectBoolean_True(t *testing.T) {
