@@ -6,13 +6,25 @@ import (
 	"testing"
 )
 
+func TestInteger(t *testing.T) {
+	i := objects.Integer{Value: 1}
+	assert.True(t, i.IsInteger())
+	assert.False(t, i.IsReal())
+}
+
+func TestReal(t *testing.T) {
+	r := objects.Real{Value: 1}
+	assert.False(t, r.IsInteger())
+	assert.True(t, r.IsReal())
+}
+
 func assertIntegerAsBytes(t *testing.T, expected string, value int64) {
 	bytes, err := (&objects.Integer{Value: value}).AsBytes()
 	assert.Nil(t, err)
 	assert.Equal(t, []byte(expected), bytes)
 }
 
-func Test_Integer_AsBytes(t *testing.T) {
+func TestIntegerAsBytes(t *testing.T) {
 	assertIntegerAsBytes(t, "1", 1)
 	assertIntegerAsBytes(t, "-1", -1)
 	assertIntegerAsBytes(t, "0", 0)
@@ -28,7 +40,7 @@ func assertRealAsBytes(t *testing.T, expected string, real float64) {
 	assert.Equal(t, []byte(expected), bytes)
 }
 
-func Test_Real_AsBytes(t *testing.T) {
+func TestRealAsBytes(t *testing.T) {
 	assertRealAsBytes(t, "1", 1)
 	assertRealAsBytes(t, "1", 1.0)
 	assertRealAsBytes(t, "1.01", 1.010)
