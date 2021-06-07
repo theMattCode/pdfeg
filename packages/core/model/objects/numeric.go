@@ -5,6 +5,7 @@ import (
 	"strconv"
 )
 
+// Number represents either an Integer or a Real object. See ISO 32000-2:2017, 7.3.3
 type Number interface {
 	IsReal() bool
 	IsInteger() bool
@@ -14,6 +15,14 @@ type Number interface {
 type Integer struct {
 	*Reference
 	Value int64
+}
+
+func NewIndirectInteger(objectNumber int, generationNumber int, value int64) (*Integer, error) {
+	reference, err := NewReference(objectNumber, generationNumber)
+	if err != nil {
+		return nil, err
+	}
+	return &Integer{Reference: reference, Value: value}, nil
 }
 
 func (i Integer) AsBytes() ([]byte, error) {
@@ -32,6 +41,14 @@ func (i Integer) IsInteger() bool {
 type Real struct {
 	*Reference
 	Value float64
+}
+
+func NewIndirectReal(objectNumber int, generationNumber int, value float64) (*Real, error) {
+	reference, err := NewReference(objectNumber, generationNumber)
+	if err != nil {
+		return nil, err
+	}
+	return &Real{Reference: reference, Value: value}, nil
 }
 
 func (r Real) AsBytes() ([]byte, error) {

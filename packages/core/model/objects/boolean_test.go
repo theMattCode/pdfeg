@@ -12,17 +12,17 @@ var (
 )
 
 func TestBooleanTrue(t *testing.T) {
-	assertBoolean(t, &o.True, true)
+	assertBoolean(t, true, &o.True)
 }
 
 func TestBooleanFalse(t *testing.T) {
-	assertBoolean(t, &o.False, false)
+	assertBoolean(t, false, &o.False)
 }
 
 func Test_NewIndirectBoolean_True(t *testing.T) {
 	actual, err := o.NewIndirectBoolean(1, 0, true)
 	assert.Nil(t, err)
-	assertBoolean(t, actual, true)
+	assertBoolean(t, true, actual)
 	assert.Equal(t, 1, actual.ObjectNumber)
 	assert.Equal(t, 0, actual.GenerationNumber)
 }
@@ -30,7 +30,7 @@ func Test_NewIndirectBoolean_True(t *testing.T) {
 func Test_NewIndirectBoolean_False(t *testing.T) {
 	actual, err := o.NewIndirectBoolean(1, 0, false)
 	assert.Nil(t, err)
-	assertBoolean(t, actual, false)
+	assertBoolean(t,  false, actual)
 	assert.Equal(t, 1, actual.ObjectNumber)
 	assert.Equal(t, 0, actual.GenerationNumber)
 }
@@ -41,7 +41,7 @@ func Test_NewIndirectBoolean_validates(t *testing.T) {
 	assert.Error(t, err)
 }
 
-func assertBoolean(t *testing.T, actual *o.Boolean, expectedNative bool) {
+func assertBoolean(t *testing.T, expectedNative bool, actual *o.Boolean) {
 	assert.Equal(t, actual.Value, expectedNative)
 	actualBytes, err := actual.AsBytes()
 	assert.Nil(t, err)
