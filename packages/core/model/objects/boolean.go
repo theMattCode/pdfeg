@@ -1,8 +1,8 @@
 package objects
 
 var (
-	True       = Boolean{value: true}
-	False      = Boolean{value: false}
+	True       = Boolean{Value: true}
+	False      = Boolean{Value: false}
 	TrueBytes  = []byte("true")
 	FalseBytes = []byte("false")
 )
@@ -12,7 +12,7 @@ var (
 // See ISO 32000-2:2017, 7.3.2.
 type Boolean struct {
 	*Reference
-	value bool
+	Value bool
 }
 
 func NewIndirectBoolean(objectNumber int, generationNumber int, value bool) (*Boolean, error) {
@@ -23,8 +23,8 @@ func NewIndirectBoolean(objectNumber int, generationNumber int, value bool) (*Bo
 	return &Boolean{reference, value}, nil
 }
 
-func (b Boolean) asBytes() ([]byte, error) {
-	if b.value {
+func (b Boolean) AsBytes() ([]byte, error) {
+	if b.Value {
 		return TrueBytes, nil
 	}
 	return FalseBytes, nil

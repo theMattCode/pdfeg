@@ -6,14 +6,14 @@ import (
 )
 
 type Object interface {
-	asBytes() ([]byte, error)
+	AsBytes() ([]byte, error)
 }
 
 // Reference represents an address of an indirect object. Use NewReference instead of direct init.
 // See ISO 32000-2:2017, 7.3.10.
 type Reference struct {
-	objectNumber     int
-	generationNumber int
+	ObjectNumber     int
+	GenerationNumber int
 }
 
 func NewReference(objectNumber int, generationNumber int) (*Reference, *model2.ValidationError) {
@@ -26,8 +26,8 @@ func NewReference(objectNumber int, generationNumber int) (*Reference, *model2.V
 	return &Reference{objectNumber, generationNumber}, nil
 }
 
-func (r *Reference) asBytes() ([]byte, error) {
-	return []byte(fmt.Sprintf("%d %d R", r.objectNumber, r.generationNumber)), nil
+func (r *Reference) AsBytes() ([]byte, error) {
+	return []byte(fmt.Sprintf("%d %d R", r.ObjectNumber, r.GenerationNumber)), nil
 }
 
 // Null represents PDF's null object. See ISO 32000-2:2017, 7.3.9.
@@ -49,6 +49,6 @@ func NewIndirectNull(objectNumber int, generationNumber int) (*Null, error) {
 
 var nullBytes = []byte{0x6e, 0x75, 0x6c, 0x6c}
 
-func (n Null) asBytes() ([]byte, error) {
+func (n Null) AsBytes() ([]byte, error) {
 	return nullBytes, nil
 }

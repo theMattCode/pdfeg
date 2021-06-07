@@ -1,7 +1,8 @@
-package objects
+package objects_test
 
 import (
 	"github.com/stretchr/testify/assert"
+	o "pdfeg-core/model/objects"
 	"testing"
 )
 
@@ -11,38 +12,38 @@ var (
 )
 
 func TestBooleanTrue(t *testing.T) {
-	assertBoolean(t, &True, true)
+	assertBoolean(t, &o.True, true)
 }
 
 func TestBooleanFalse(t *testing.T) {
-	assertBoolean(t, &False, false)
+	assertBoolean(t, &o.False, false)
 }
 
 func Test_NewIndirectBoolean_True(t *testing.T) {
-	actual, err := NewIndirectBoolean(1, 0, true)
+	actual, err := o.NewIndirectBoolean(1, 0, true)
 	assert.Nil(t, err)
 	assertBoolean(t, actual, true)
-	assert.Equal(t, 1, actual.objectNumber)
-	assert.Equal(t, 0, actual.generationNumber)
+	assert.Equal(t, 1, actual.ObjectNumber)
+	assert.Equal(t, 0, actual.GenerationNumber)
 }
 
 func Test_NewIndirectBoolean_False(t *testing.T) {
-	actual, err := NewIndirectBoolean(1, 0, false)
+	actual, err := o.NewIndirectBoolean(1, 0, false)
 	assert.Nil(t, err)
 	assertBoolean(t, actual, false)
-	assert.Equal(t, 1, actual.objectNumber)
-	assert.Equal(t, 0, actual.generationNumber)
+	assert.Equal(t, 1, actual.ObjectNumber)
+	assert.Equal(t, 0, actual.GenerationNumber)
 }
 
 func Test_NewIndirectBoolean_validates(t *testing.T) {
-	actual, err := NewIndirectBoolean(0, 0, true)
+	actual, err := o.NewIndirectBoolean(0, 0, true)
 	assert.Nil(t, actual)
 	assert.Error(t, err)
 }
 
-func assertBoolean(t *testing.T, actual *Boolean, expectedNative bool) {
-	assert.Equal(t, actual.value, expectedNative)
-	actualBytes, err := actual.asBytes()
+func assertBoolean(t *testing.T, actual *o.Boolean, expectedNative bool) {
+	assert.Equal(t, actual.Value, expectedNative)
+	actualBytes, err := actual.AsBytes()
 	assert.Nil(t, err)
 	if expectedNative {
 		assert.Equal(t, expectedTrueBytes, actualBytes)

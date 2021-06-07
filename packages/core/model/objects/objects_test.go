@@ -9,10 +9,10 @@ import (
 func Test_NewReference_HappyPath(t *testing.T) {
 	actual, err := NewReference(1, 0)
 	assert.Nil(t, err)
-	assert.Equal(t, 1, actual.objectNumber)
-	assert.Equal(t, 0, actual.generationNumber)
+	assert.Equal(t, 1, actual.ObjectNumber)
+	assert.Equal(t, 0, actual.GenerationNumber)
 
-	actualBytes, err2 := actual.asBytes()
+	actualBytes, err2 := actual.AsBytes()
 	assert.Nil(t, err2)
 	assert.Equal(t, []byte("1 0 R"), actualBytes)
 }
@@ -39,7 +39,7 @@ func Test_NewNull_HappyPath(t *testing.T) {
 	actual := NewNull()
 	assert.Nil(t, actual.Reference)
 
-	actualBytes, err := actual.asBytes()
+	actualBytes, err := actual.AsBytes()
 	assert.Nil(t, err)
 	assert.Equal(t, nullBytes, actualBytes)
 }
@@ -47,10 +47,10 @@ func Test_NewNull_HappyPath(t *testing.T) {
 func Test_NewIndirectNull_HappyPath(t *testing.T) {
 	actual, err := NewIndirectNull(1, 0)
 	assert.Nil(t, err)
-	assert.Equal(t, 1, actual.objectNumber)
-	assert.Equal(t, 0, actual.generationNumber)
+	assert.Equal(t, 1, actual.ObjectNumber)
+	assert.Equal(t, 0, actual.GenerationNumber)
 
-	actualBytes, err := actual.asBytes()
+	actualBytes, err := actual.AsBytes()
 	assert.Nil(t, err)
 	assert.Equal(t, nullBytes, actualBytes)
 }
