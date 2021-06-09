@@ -47,8 +47,8 @@ func NewIndirectNull(objectNumber int, generationNumber int) (*Null, error) {
 	return &Null{reference}, nil
 }
 
-var nullBytes = []byte{0x6e, 0x75, 0x6c, 0x6c}
+var NullBytes = []byte{0x6e, 0x75, 0x6c, 0x6c}
 
 func (n Null) AsBytes() ([]byte, error) {
-	return nullBytes, nil
+	return NullBytes, nil
 }
