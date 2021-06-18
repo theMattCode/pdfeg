@@ -17,16 +17,12 @@ type Integer struct {
 	Value int64
 }
 
-func NewIndirectInteger(objectNumber int, generationNumber int, value int64) (*Integer, error) {
-	reference, err := NewReference(objectNumber, generationNumber)
-	if err != nil {
-		return nil, err
-	}
-	return &Integer{Reference: reference, Value: value}, nil
+func (i Integer) AsASCIIBytes() ([]byte, error) {
+	return []byte(fmt.Sprintf("%d", i.Value)), nil
 }
 
-func (i Integer) AsBytes() ([]byte, error) {
-	return []byte(fmt.Sprintf("%d", i.Value)), nil
+func (i Integer) Label() *Reference {
+	return i.Reference
 }
 
 func (i Integer) IsReal() bool {
@@ -43,16 +39,12 @@ type Real struct {
 	Value float64
 }
 
-func NewIndirectReal(objectNumber int, generationNumber int, value float64) (*Real, error) {
-	reference, err := NewReference(objectNumber, generationNumber)
-	if err != nil {
-		return nil, err
-	}
-	return &Real{Reference: reference, Value: value}, nil
+func (r Real) AsASCIIBytes() ([]byte, error) {
+	return []byte(strconv.FormatFloat(r.Value, 'f', -1, 64)), nil
 }
 
-func (r Real) AsBytes() ([]byte, error) {
-	return []byte(strconv.FormatFloat(r.Value, 'f', -1, 64)), nil
+func (r Real) Label() *Reference {
+	return r.Reference
 }
 
 func (r Real) IsReal() bool {

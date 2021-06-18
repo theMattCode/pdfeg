@@ -15,15 +15,11 @@ type Boolean struct {
 	Value bool
 }
 
-func NewIndirectBoolean(objectNumber int, generationNumber int, value bool) (*Boolean, error) {
-	reference, err := NewReference(objectNumber, generationNumber)
-	if err != nil {
-		return nil, err
-	}
-	return &Boolean{reference, value}, nil
+func (b Boolean) Label() *Reference {
+	return b.Reference
 }
 
-func (b Boolean) AsBytes() ([]byte, error) {
+func (b Boolean) AsASCIIBytes() ([]byte, error) {
 	if b.Value {
 		return TrueBytes, nil
 	}
