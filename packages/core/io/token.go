@@ -76,31 +76,43 @@ const (
 	// Null is white-space character.
 	//
 	// Hexadecimal: 0x00
+	//
+	// Rune: NUL
 	Null
 
 	// HorizontalTab is white-space character.
 	//
 	// Hexadecimal: 0x09
+	//
+	// Rune: HT
 	HorizontalTab
 
 	// LineFeed is white-space character.
 	//
 	// Hexadecimal: 0x0A
+	//
+	// Rune: LF
 	LineFeed
 
 	// FormFeed is white-space character.
 	//
 	// Hexadecimal: 0x0C
+	//
+	// Rune: FF
 	FormFeed
 
 	// CarriageReturn is white-space character.
 	//
 	// Hexadecimal: 0x0D
+	//
+	// Rune: CR
 	CarriageReturn
 
 	// Space is white-space character.
 	//
 	// Hexadecimal: 0x20
+	//
+	// Rune: SP
 	Space
 
 	// Whitespace separates syntactic constructs such as names and number from each other.
@@ -109,4 +121,13 @@ const (
 	// The following tokens are treated as white-space characters:
 	// Null, HorizontalTab, LineFeed, FormFeed, CarriageReturn, Space
 	Whitespace
+)
+
+const (
+	NUL rune = 0
+	HT       = 9
+	LF       = 10
+	FF       = 12
+	CR       = 13
+	SP       = 32
 )
