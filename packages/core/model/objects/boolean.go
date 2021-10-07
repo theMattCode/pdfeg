@@ -1,26 +1,27 @@
 package objects
 
 var (
-	TRUE  = Boolean{value: true}
-	FALSE = Boolean{value: false}
+	True       = Boolean{Value: true}
+	False      = Boolean{Value: false}
+	TrueBytes  = []byte("true")
+	FalseBytes = []byte("false")
 )
 
+// Boolean represents PDF's boolean objects holding the values for its keywords true and false.
+// For the most cases in building PDFs use the constants True and False if the object is direct.
+// See ISO 32000-2:2017, 7.3.2.
 type Boolean struct {
 	*Reference
-	value bool
+	Value bool
 }
 
-func NewIndirectBoolean(objectNumber int, generationNumber int, value bool) (*Boolean, error) {
-	reference, err := NewReference(objectNumber, generationNumber)
-	if err != nil {
-		return nil, err
-	}
-	return &Boolean{reference, value}, nil
+func (b Boolean) Label() *Reference {
+	return b.Reference
 }
 
-func (b Boolean) asBytes() ([]byte, error) {
-	if b.value {
-		return []byte("true"), nil
+func (b Boolean) AsASCIIBytes() ([]byte, error) {
+	if b.Value {
+		return TrueBytes, nil
 	}
-	return []byte("false"), nil
+	return FalseBytes, nil
 }
