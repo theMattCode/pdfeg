@@ -3,7 +3,7 @@ package io
 type Token int
 
 const (
-	// Percent is a delimiter.
+	// Percent is a delimiter and signals the start of a comment.
 	//
 	// Glyph: %
 	//
@@ -121,13 +121,16 @@ const (
 	// The following tokens are treated as white-space characters:
 	// Null, HorizontalTab, LineFeed, FormFeed, CarriageReturn, Space
 	Whitespace
+
+	Unknown
 )
 
 const (
-	NUL rune = 0
-	HT       = 9
-	LF       = 10
-	FF       = 12
-	CR       = 13
-	SP       = 32
+	NUL     rune = 0
+	HT           = 9
+	LF           = 10
+	FF           = 12
+	CR           = 13
+	SP           = 32
+	PERCENT      = '%'
 )
